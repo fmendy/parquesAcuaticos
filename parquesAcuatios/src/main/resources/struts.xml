@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.custom.i18n.resources" value="global" />
+	
+
+	<package name="basicstruts2" extends="struts-default">
+		<action name="index">
+			<result>/pages/index.jsp</result>
+		</action>
+
+		<!-- USUARIO -->
+		<action name="irUsuarioLogin"
+			class="com.alvaro.parquesAcuaticos.action.usuario.UsuarioIrLoginAction"
+			method="execute">
+			<result name="SUCCESS">/pages/usuario/usuarioLogin.jsp</result>
+			<result name="LOGEADO" type="redirectAction">
+				<param name="actionName">verDatosUsuario</param>
+			</result>
+		</action>
+
+		<action name="loginUsuario"
+			class="com.alvaro.parquesAcuaticos.action.usuario.UsuarioLoginAction"
+			method="execute">
+			<result name="SUCCESS" type="redirectAction">
+				<param name="actionName">verDatosUsuario</param>
+			</result>
+			<result name="FAILED" type="redirectAction">
+				<param name="actionName">irUsuarioLogin</param>
+			</result>
+		</action>
+
+		<action name="verDatosUsuario"
+			class="com.alvaro.parquesAcuaticos.action.usuario.UsuarioVerMisDatosAction"
+			method="execute">
+			<result name="SUCCESS">/pages/usuario/usuarioMisDatos.jsp</result>
+			<result name="FAILED" type="redirectAction">
+				<param name="actionName">irUsuarioLogin</param>
+			</result>
+		</action>
+
+		<action name="irRegistroUsuario"
+			class="com.alvaro.parquesAcuaticos.action.usuario.UsuarioIrRegistroAction"
+			method="execute">
+			<result name="SUCCESS">/pages/usuario/usuarioRegistro.jsp</result>
+			<result name="FAILED" type="redirectAction">
+				<param name="actionName">verDatosUsuario</param>
+			</result>
+		</action>
+
+		<action name="registrarUsuario"
+			class="com.alvaro.parquesAcuaticos.action.usuario.UsuarioRegistrarAction"
+			method="execute">
+			<result name="SUCCESS" type="redirectAction">
+				<param name="actionName">verDatosUsuario</param>
+			</result>
+			<result name="FAILED" type="redirectAction">
+				<param name="actionName">irRegistroUsuario</param>
+			</result>
+			<result name="LOGEADO" type="redirectAction">
+				<param name="actionName">verDatosUsuario</param>
+			</result>
+			<result name="input">/pages/usuario/usuarioRegistro.jsp</result>
+			
+		</action>
+		
+		<!-- End Usuario -->
+		
+		<!-- Localidad -->
+		<action name="irLocalidadAniadir" class="com.alvaro.parquesAcuaticos.action.localidad.LocalidadIrAniadirAction" method="execute">
+			<result name="SUCCESS">/pages/localidad/localidadAniadir.jsp</result>
+			<result name="NO_LOGEADO" type="redirectAction">
+				<param name="actionName">irUsuarioLogin</param>
+			</result>
+		</action>
+		
+		
+		<action name="localidadAniadir"
+			class="com.alvaro.parquesAcuaticos.action.localidad.LocalidadAniadirAction"
+			method="execute">
+			<result name="SUCCESS" type="redirectAction">
+				<param name="actionName">irLocalidadAniadir</param>
+			</result>
+			<result name="FAILED" type="redirectAction">
+				<param name="actionName">irLocalidadAniadir</param>
+			</result>
+			<result name="input" type="redirectAction">
+				<param name="actionName">irLocalidadAniadir</param>
+			</result>
+			<result name="NO_LOGEADO" type="redirectAction">
+				<param name="actionName">irUsuarioLogin</param>
+			</result>
+		</action>
+		<!-- End Localidad -->
+		
+		<!-- Provincias -->
+		<action name="getProvinciasPais" class="com.alvaro.parquesAcuaticos.action.provincia.ProvinciaGeneralAction" method="getProvinciaPorPais">
+			<result name="SUCCESS">/pages/provincia/provinciaListSelect.jsp</result>
+		</action>
+		<!-- End Provincia -->
+		
+		<!--  Compania -->
+		<action name="irCompania" class="com.alvaro.parquesAcuaticos.action.compania.irCompaniaAction" method="execute">
+			<result name="SUCCESS">/pages/compania/companiaDatos.jsp</result>
+			<result name="NO_LOGEADO" type="redirectAction">
+				<param name="actionName">irUsuarioLogin</param>
+			</result>
+		</action>
+		
+		<action name="guardarCompania" class="com.alvaro.parquesAcuaticos.action.compania.CompaniaGuardarAction" method="execute">
+			<result name="SUCCESS" >/pages/compania/companiaDatos.jsp</result>
+			<result name="NO_LOGEADO" type="redirectAction">
+				<param name="actionName">irUsuarioLogin</param>
+			</result>
+		</action>
+		
+		<!--	End Compania  -->
+		
+
+	</package>
+
+</struts>
+

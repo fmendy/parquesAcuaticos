@@ -1,0 +1,14 @@
+@charset "ISO-8859-1";
+.errorMessage{
+	color: red;
+}
+#errorMessage{
+	color: red;
+}
+
+footer {
+    position: absolute;
+    height: 50px;
+    bottom: 0;
+    width: 100%
+}

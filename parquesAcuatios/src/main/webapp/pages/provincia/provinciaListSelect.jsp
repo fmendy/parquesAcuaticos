@@ -9,7 +9,7 @@
 </div>
 <s:select name="localidad.provincia.idProvincia" list="listaProvincias"
 	listKey="idProvincia" listValue="nombre" size="1" required="true"
-	headerValue="Seleccione" headerKey="" id="listaProvincias"
+	headerValue="Seleccione" headerKey="" id="listaProvinciasSelect"
 	class="browser-default custom-select" />
 
 

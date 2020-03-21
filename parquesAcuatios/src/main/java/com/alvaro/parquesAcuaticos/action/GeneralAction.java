@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 
 import com.alvaro.parquesAcuaticos.bean.Usuario;
+import com.alvaro.parquesAcuaticos.business.dao.CompaniaDAO;
+import com.alvaro.parquesAcuaticos.business.dao.impl.CompaniaDAOImpl;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -62,6 +64,7 @@ public class GeneralAction extends ActionSupport {
 	public void setOperationStatus(String operationStatus) {
 		this.operationStatus = operationStatus;
 	}
+	
 	
 
 }

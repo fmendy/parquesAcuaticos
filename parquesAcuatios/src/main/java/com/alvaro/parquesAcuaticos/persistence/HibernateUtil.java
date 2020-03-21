@@ -8,11 +8,15 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import com.alvaro.parquesAcuaticos.bean.Atraccion;
 import com.alvaro.parquesAcuaticos.bean.Compania;
+import com.alvaro.parquesAcuaticos.bean.Etiqueta;
+import com.alvaro.parquesAcuaticos.bean.Foto;
 import com.alvaro.parquesAcuaticos.bean.Localidad;
 import com.alvaro.parquesAcuaticos.bean.Pais;
 import com.alvaro.parquesAcuaticos.bean.Parque;
 import com.alvaro.parquesAcuaticos.bean.Provincia;
+import com.alvaro.parquesAcuaticos.bean.TipoFoto;
 import com.alvaro.parquesAcuaticos.bean.Usuario;
 import com.fasterxml.classmate.AnnotationConfiguration;
 
@@ -44,6 +48,10 @@ public class HibernateUtil {
 			configuration.addAnnotatedClass(Localidad.class);
 			configuration.addAnnotatedClass(Compania.class);
 			configuration.addAnnotatedClass(Parque.class);
+			configuration.addAnnotatedClass(TipoFoto.class);
+			configuration.addAnnotatedClass(Foto.class);
+			configuration.addAnnotatedClass(Atraccion.class);
+			configuration.addAnnotatedClass(Etiqueta.class);
 			
 			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 					.applySettings(configuration.getProperties()).build();

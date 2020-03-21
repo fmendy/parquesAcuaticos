@@ -17,7 +17,7 @@
 					<li class="nav-item"><a class="nav-link" href="#">Mis
 							Datos </a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Mis Albums</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Mis Postales</a></li>
+					<li class="nav-item"><a class="nav-link" href="verCompanias"><s:text name="Compania"/></a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Mis Albums</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Cerrar sesion </a></li>
 				</s:if>

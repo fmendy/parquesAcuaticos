@@ -1,5 +1,6 @@
 package com.alvaro.parquesAcuaticos.bean;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Provincia")
-public class Provincia {
+public class Provincia implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

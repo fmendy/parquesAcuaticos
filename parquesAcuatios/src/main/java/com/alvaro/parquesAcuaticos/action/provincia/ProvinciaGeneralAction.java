@@ -12,10 +12,11 @@ import com.alvaro.parquesAcuaticos.business.dao.impl.ProvinciaDAOImpl;
 import com.alvaro.parquesAcuaticos.session.SessionesGlobales;
 
 public class ProvinciaGeneralAction extends GeneralAction {
-	private List<Provincia> listaProvincias = new ArrayList<Provincia>();
-	private ProvinciaDAO provinciaDAO = new ProvinciaDAOImpl();
-	private Pais pais = new Pais();
-	private Localidad localidad = new Localidad();
+	protected List<Provincia> listaProvincias = new ArrayList<Provincia>();
+	protected ProvinciaDAO provinciaDAO = new ProvinciaDAOImpl();
+	protected Pais pais = new Pais();
+	protected Localidad localidad = new Localidad();
+	protected Provincia provincia = new Provincia();
 	
 	
 	
@@ -34,7 +35,6 @@ public class ProvinciaGeneralAction extends GeneralAction {
 	}
 
 	public String getProvinciaPorPais() {
-		System.out.println(pais.getIdPais());
 		listaProvincias = provinciaDAO.getProvinciasPorPais(pais);
 		for (Provincia p: listaProvincias) {
 			System.out.println(p.getNombre());
@@ -70,6 +70,22 @@ public class ProvinciaGeneralAction extends GeneralAction {
 	public void setListaProvincias(List<Provincia> listaProvincias) {
 		this.listaProvincias = listaProvincias;
 	}
+
+	/**
+	 * @return the provincia
+	 */
+	public Provincia getProvincia() {
+		return provincia;
+	}
+
+	/**
+	 * @param provincia the provincia to set
+	 */
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
+	}
+	
+	
 	
 
 }

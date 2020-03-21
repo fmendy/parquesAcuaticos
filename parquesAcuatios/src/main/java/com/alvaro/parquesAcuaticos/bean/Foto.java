@@ -2,34 +2,27 @@ package com.alvaro.parquesAcuaticos.bean;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.alvaro.parquesAcuaticos.bean.Provincia;
-
 @Entity
-@Table(name = "pais")
-public class Pais  implements Serializable{
-	
+@Table(name = "Foto")
+public class Foto implements Serializable {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "IDPais", nullable = false, unique = true, updatable = false)
-	private int idPais;
+	@Column(name = "IDFoto", nullable = false, unique = true, updatable = false)
+	private int idFoto;
 	
-	@Column(name = "Nombre", nullable = false, unique = true, length = 80)
-	private String nombre;
-	
-	@Column(name = "Imagen", length = 250)
-	private String imagen;
+	@Column(name = "url", length = 250)
+	private String url;
 	
 	@Column(name = "Activo", insertable = false)
 	private boolean activo;
@@ -40,49 +33,44 @@ public class Pais  implements Serializable{
 	@Column(name = "FechaUltimaModificacion", insertable = false)
 	private Date fechaUltimaModificacion;
 	
-	@OneToMany(mappedBy="pais", fetch = FetchType.EAGER)
-	private List<Provincia> listProvincia = new ArrayList<Provincia>();
+	@ManyToOne
+    @JoinColumn(name="IDParque")
+	private Parque parque= new Parque();
+	
+	@ManyToOne
+    @JoinColumn(name="IDAtraccion")
+	private Atraccion atraccion= new Atraccion();
+	
+	@ManyToOne
+    @JoinColumn(name="IDTipoFoto")
+	private TipoFoto tipoFoto= new TipoFoto();
 
 	/**
-	 * @return the idPais
+	 * @return the idFoto
 	 */
-	public int getIdPais() {
-		return idPais;
+	public int getIdFoto() {
+		return idFoto;
 	}
 
 	/**
-	 * @param idPais the idPais to set
+	 * @param idFoto the idFoto to set
 	 */
-	public void setIdPais(int idPais) {
-		this.idPais = idPais;
+	public void setIdFoto(int idFoto) {
+		this.idFoto = idFoto;
 	}
 
 	/**
-	 * @return the nombre
+	 * @return the url
 	 */
-	public String getNombre() {
-		return nombre;
+	public String getUrl() {
+		return url;
 	}
 
 	/**
-	 * @param nombre the nombre to set
+	 * @param url the url to set
 	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	/**
-	 * @return the imagen
-	 */
-	public String getImagen() {
-		return imagen;
-	}
-
-	/**
-	 * @param imagen the imagen to set
-	 */
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	/**
@@ -130,23 +118,54 @@ public class Pais  implements Serializable{
 	
 
 	/**
-	 * @return the listProvincia
+	 * @return the parque
 	 */
-	public List<Provincia> getListProvincia() {
-		return listProvincia;
+	public Parque getParque() {
+		return parque;
 	}
 
 	/**
-	 * @param listProvincia the listProvincia to set
+	 * @param parque the parque to set
 	 */
-	public void setListProvincia(List<Provincia> listProvincia) {
-		this.listProvincia = listProvincia;
+	public void setParque(Parque parque) {
+		this.parque = parque;
+	}
+	
+	
+
+	/**
+	 * @return the tipoFoto
+	 */
+	public TipoFoto getTipoFoto() {
+		return tipoFoto;
 	}
 
-	public Pais() {
+	/**
+	 * @param tipoFoto the tipoFoto to set
+	 */
+	public void setTipoFoto(TipoFoto tipoFoto) {
+		this.tipoFoto = tipoFoto;
+	}
+	
+	
+
+	/**
+	 * @return the atraccion
+	 */
+	public Atraccion getAtraccion() {
+		return atraccion;
+	}
+
+	/**
+	 * @param atraccion the atraccion to set
+	 */
+	public void setAtraccion(Atraccion atraccion) {
+		this.atraccion = atraccion;
+	}
+
+	public Foto() {
 		super();
 	}
 	
 	
-
 }

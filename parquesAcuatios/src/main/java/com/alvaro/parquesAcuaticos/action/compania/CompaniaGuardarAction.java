@@ -15,10 +15,9 @@ import com.alvaro.parquesAcuaticos.business.dao.impl.CompaniaDAOImpl;
 import com.alvaro.parquesAcuaticos.files.gestorImagenes;
 import com.alvaro.parquesAcuaticos.session.SessionesGlobales;
 
-public class CompaniaGuardarAction extends GeneralAction {
+public class CompaniaGuardarAction extends CompaniaGeneral {
 
-	private Compania compania = new Compania();
-	private CompaniaDAO companiaDAO = new CompaniaDAOImpl();
+
 	private File uploadImagen;
 	private String uploadImagenFileName;
 	private String uploadImagenContentType;
@@ -52,20 +51,7 @@ public class CompaniaGuardarAction extends GeneralAction {
 		return SessionesGlobales.NO_LOGEADO;
 	}
 
-	/**
-	 * @return the compania
-	 */
-	public Compania getCompania() {
-		return compania;
-	}
-
-	/**
-	 * @param compania the compania to set
-	 */
-	public void setCompania(Compania compania) {
-		this.compania = compania;
-	}
-
+	
 	/**
 	 * @return the uploadImagen
 	 */

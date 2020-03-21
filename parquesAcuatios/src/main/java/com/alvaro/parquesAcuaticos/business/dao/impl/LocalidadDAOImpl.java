@@ -1,10 +1,14 @@
 package com.alvaro.parquesAcuaticos.business.dao.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import com.alvaro.parquesAcuaticos.bean.Localidad;
+import com.alvaro.parquesAcuaticos.bean.Provincia;
 import com.alvaro.parquesAcuaticos.business.dao.LocalidadDAO;
 import com.alvaro.parquesAcuaticos.persistence.HibernateUtil;
 
@@ -65,6 +69,42 @@ public class LocalidadDAOImpl implements LocalidadDAO {
 					session.close();
 				}
 				return result;
+	}
+
+	public List<Localidad> getLocalidadesPorProvincia(Provincia provincia) {
+		List<Localidad> result = new ArrayList<Localidad>();
+		Transaction transaction = null;
+		String hql = "from Localidad l where l.provincia.idProvincia=:idenProvincia and l.activo = 1 order by l.nombre";
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+
+			// Empieza Transaction
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			
+			query.setParameter("idenProvincia",provincia.getIdProvincia());
+			result = query.list();
+			if (result == null) {
+				result = new ArrayList<Localidad>();
+			}
+			System.out.println(result.size());
+			for(Localidad l : result) {
+				System.out.println(l.getNombre());
+			}
+			
+
+			transaction.commit();
+
+		} catch (Exception e) {
+			System.out.println(e);
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			result = null;
+		} finally {
+			session.close();
+		}
+		return result;
 	}
 
 

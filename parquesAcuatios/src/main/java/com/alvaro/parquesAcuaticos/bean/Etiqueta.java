@@ -2,59 +2,47 @@ package com.alvaro.parquesAcuaticos.bean;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.alvaro.parquesAcuaticos.bean.Provincia;
-
 @Entity
-@Table(name = "pais")
-public class Pais  implements Serializable{
-	
+@Table(name = "Etiqueta")
+public class Etiqueta implements Serializable {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "IDPais", nullable = false, unique = true, updatable = false)
-	private int idPais;
-	
+	@Column(name = "IDEtiqueta", nullable = false, unique = true, updatable = false)
+	private int idEtiqueta;
+
 	@Column(name = "Nombre", nullable = false, unique = true, length = 80)
 	private String nombre;
-	
-	@Column(name = "Imagen", length = 250)
-	private String imagen;
-	
+
 	@Column(name = "Activo", insertable = false)
 	private boolean activo;
-	
+
 	@Column(name = "FechaCreacion", insertable = false, updatable = false)
 	private Date fechaCreacion;
-	
+
 	@Column(name = "FechaUltimaModificacion", insertable = false)
 	private Date fechaUltimaModificacion;
-	
-	@OneToMany(mappedBy="pais", fetch = FetchType.EAGER)
-	private List<Provincia> listProvincia = new ArrayList<Provincia>();
 
 	/**
-	 * @return the idPais
+	 * @return the idEtiqueta
 	 */
-	public int getIdPais() {
-		return idPais;
+	public int getIdEtiqueta() {
+		return idEtiqueta;
 	}
 
 	/**
-	 * @param idPais the idPais to set
+	 * @param idEtiqueta the idEtiqueta to set
 	 */
-	public void setIdPais(int idPais) {
-		this.idPais = idPais;
+	public void setIdEtiqueta(int idEtiqueta) {
+		this.idEtiqueta = idEtiqueta;
 	}
 
 	/**
@@ -69,20 +57,6 @@ public class Pais  implements Serializable{
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	/**
-	 * @return the imagen
-	 */
-	public String getImagen() {
-		return imagen;
-	}
-
-	/**
-	 * @param imagen the imagen to set
-	 */
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
 	}
 
 	/**
@@ -126,27 +100,9 @@ public class Pais  implements Serializable{
 	public void setFechaUltimaModificacion(Date fechaUltimaModificacion) {
 		this.fechaUltimaModificacion = fechaUltimaModificacion;
 	}
-	
-	
 
-	/**
-	 * @return the listProvincia
-	 */
-	public List<Provincia> getListProvincia() {
-		return listProvincia;
-	}
-
-	/**
-	 * @param listProvincia the listProvincia to set
-	 */
-	public void setListProvincia(List<Provincia> listProvincia) {
-		this.listProvincia = listProvincia;
-	}
-
-	public Pais() {
+	public Etiqueta() {
 		super();
 	}
-	
-	
 
 }

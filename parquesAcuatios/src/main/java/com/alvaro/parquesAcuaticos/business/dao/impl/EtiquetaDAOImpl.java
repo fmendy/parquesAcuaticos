@@ -1,54 +1,22 @@
 package com.alvaro.parquesAcuaticos.business.dao.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import com.alvaro.parquesAcuaticos.bean.Compania;
-import com.alvaro.parquesAcuaticos.bean.Provincia;
-import com.alvaro.parquesAcuaticos.business.dao.CompaniaDAO;
+import com.alvaro.parquesAcuaticos.bean.Etiqueta;
+import com.alvaro.parquesAcuaticos.bean.Pais;
+import com.alvaro.parquesAcuaticos.bean.Usuario;
+import com.alvaro.parquesAcuaticos.business.dao.EtiquetaDAO;
 import com.alvaro.parquesAcuaticos.persistence.HibernateUtil;
 import com.alvaro.parquesAcuaticos.session.SessionesGlobales;
 
-public class CompaniaDAOImpl implements CompaniaDAO {
+public class EtiquetaDAOImpl implements EtiquetaDAO {
 
-	public Compania buscarCompaniaID(Compania compania) {
-		Compania comp = null;
-		Transaction transaction = null;
-		String hql = "from Compania c where c.idCompania=:idenCompa and c.activo = 1";
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		try {
-
-			// Empieza Transaction
-			transaction = session.beginTransaction();
-
-			Query query = session.createQuery(hql);
-			query.setParameter("idenCompa", compania.getIdCompania());
-			if (query.list() != null) {
-				comp = (Compania) query.list().get(0);
-				System.out.println(comp.getIdCompania()+ " "+comp.getIdCompania());
-			}
-
-			transaction.commit();
-
-		} catch (Exception e) {
-			System.out.println(e);
-			if (transaction != null) {
-				transaction.rollback();
-			}
-			comp = null;
-		} finally {
-			session.close();
-		}
-		return comp;
-	}
-
-	public boolean guardarCompania(Compania compania) {
-		// TODO Auto-generated method stub
+	public boolean guardarEtiqueta(Etiqueta etiqueta) {
 		boolean result = false;
 		Transaction transaction = null;
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -56,8 +24,7 @@ public class CompaniaDAOImpl implements CompaniaDAO {
 
 			// Empieza Transaction
 			transaction = session.beginTransaction();
-			
-			session.save(compania);
+			session.save(etiqueta);
 
 			transaction.commit();
 			result = true;
@@ -74,7 +41,61 @@ public class CompaniaDAOImpl implements CompaniaDAO {
 		return result;
 	}
 
-	public boolean actualizarCompania(Compania compania) {
+	public Etiqueta getEtiquetaNombreExacto(Etiqueta etiqueta) {
+		Etiqueta result = null;
+		Transaction transaction = null;
+		String hql = "from Etiqueta e where e.nombre=:etNombre and e.activo = 1";
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+
+			// Empieza Transaction
+			transaction = session.beginTransaction();
+
+			Query query = session.createQuery(hql);
+			query.setParameter("etNombre", etiqueta.getNombre());
+			if (query.list() != null) {
+				result = (Etiqueta) query.list().get(0);
+			}
+			transaction.commit();
+
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+
+	public Etiqueta getEtiquetaByID(Etiqueta etiqueta) {
+		Etiqueta result = null;
+		Transaction transaction = null;
+		String hql = "from Etiqueta e where e.idEtiqueta=:etId and e.activo = 1";
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+
+			// Empieza Transaction
+			transaction = session.beginTransaction();
+
+			Query query = session.createQuery(hql);
+			query.setParameter("etId", etiqueta.getIdEtiqueta());
+			if (query.list() != null) {
+				result = (Etiqueta) query.list().get(0);
+			}
+			transaction.commit();
+
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+
+	public boolean actualiarEtiqueta(Etiqueta etiqueta) {
 		boolean result = false;
 		Transaction transaction = null;
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -83,9 +104,8 @@ public class CompaniaDAOImpl implements CompaniaDAO {
 			// Empieza Transaction
 			transaction = session.beginTransaction();
 
-			
-			compania.setFechaUltimaModificacion(SessionesGlobales.getDateSQL());
-			session.update(compania);
+			etiqueta.setFechaUltimaModificacion(SessionesGlobales.getDateSQL());
+			session.update(etiqueta);
 
 			transaction.commit();
 			result = true;
@@ -102,31 +122,31 @@ public class CompaniaDAOImpl implements CompaniaDAO {
 		return result;
 	}
 
-	public List<Compania> getAllCompanias() {
-		List<Compania> result = new ArrayList<Compania>();
+	public List<Etiqueta> getAllEtiquetas() {
+		List<Etiqueta> result = null;
 		Transaction transaction = null;
-		String hql = "from Compania c where c.activo = 1 order by c.nombre";
+		String hql = "Select e from Etiqueta e " + "where e.activo = 1";
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
 
 			// Empieza Transaction
 			transaction = session.beginTransaction();
 			Query query = session.createQuery(hql);
-			
-			if (query.list() != null) {
-				result = query.list();
-			}
+			result = query.list();
 
 			transaction.commit();
 
 		} catch (Exception e) {
-			System.out.println(e);
+			System.err.println(e);
 			if (transaction != null) {
 				transaction.rollback();
 			}
-			result = null;
 		} finally {
 			session.close();
+		}
+
+		if (result == null) {
+			result = new ArrayList<Etiqueta>();
 		}
 		return result;
 	}

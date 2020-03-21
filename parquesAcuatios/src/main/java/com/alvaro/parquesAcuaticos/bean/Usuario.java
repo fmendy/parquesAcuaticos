@@ -3,6 +3,7 @@
  */
 package com.alvaro.parquesAcuaticos.bean;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -19,7 +20,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "usuario")
-public class Usuario {
+public class Usuario implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

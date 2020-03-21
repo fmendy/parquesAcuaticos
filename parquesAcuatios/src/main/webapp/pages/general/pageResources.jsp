@@ -2,9 +2,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <meta name='viewport' content='width=device-width, initial-scale=1'>
+ 
+
 
 
 <link href="includes/css/bootstrap.min.css" rel="stylesheet"
@@ -19,6 +23,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="includes/js/bootstrap.min.js"></script>
 <script src="includes/js/jquery-3.4.1.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <title>Postal</title>
 </head>
 <constant name="struts.ui.theme" value="simple" />

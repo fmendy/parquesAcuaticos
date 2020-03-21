@@ -17,58 +17,48 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Parque")
-public class Parque implements Serializable {
+@Table(name = "Atraccion")
+public class Atraccion implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "IDParque", nullable = false, unique = true, updatable = false)
-	private int idParque;
-	
+	@Column(name = "IDAtraccion", nullable = false, unique = true, updatable = false)
+	private int idCompania;
+
 	@Column(name = "Nombre", nullable = false, unique = true, length = 80)
 	private String nombre;
-	
-	@Column(name = "Web", length = 250)
-	private String web;
-	
-	@Column(name = "Imagen", length = 250)
-	private String imagen;
-	
+
 	@Column(name = "Descripcion", length = 500)
 	private String descripcion;
-	
+
 	@ManyToOne
-    @JoinColumn(name="IDCompania", nullable=false)
-	private Compania compania = new Compania();
-	
-	@ManyToOne
-    @JoinColumn(name="IDLocalidad", nullable=false)
-	private Localidad localidad = new Localidad();
-	
-	@Column(name = "Activo", insertable = false)
+	@JoinColumn(name = "IDParque", nullable = false)
+	private Parque parque = new Parque();
+
+	@Column(name = "Activo", insertable = false, updatable = false)
 	private boolean activo;
-	
+
 	@Column(name = "FechaCreacion", insertable = false, updatable = false)
 	private Date fechaCreacion;
-	
+
 	@Column(name = "FechaUltimaModificacion", insertable = false)
 	private Date fechaUltimaModificacion;
-	
-	@OneToMany(mappedBy="parque", fetch = FetchType.EAGER)
+
+	@OneToMany(mappedBy = "atraccion", fetch = FetchType.EAGER)
 	private List<Foto> listFoto = new ArrayList<Foto>();
 
 	/**
-	 * @return the idParque
+	 * @return the idCompania
 	 */
-	public int getIdParque() {
-		return idParque;
+	public int getIdCompania() {
+		return idCompania;
 	}
 
 	/**
-	 * @param idParque the idParque to set
+	 * @param idCompania the idCompania to set
 	 */
-	public void setIdParque(int idParque) {
-		this.idParque = idParque;
+	public void setIdCompania(int idCompania) {
+		this.idCompania = idCompania;
 	}
 
 	/**
@@ -86,34 +76,6 @@ public class Parque implements Serializable {
 	}
 
 	/**
-	 * @return the web
-	 */
-	public String getWeb() {
-		return web;
-	}
-
-	/**
-	 * @param web the web to set
-	 */
-	public void setWeb(String web) {
-		this.web = web;
-	}
-
-	/**
-	 * @return the imagen
-	 */
-	public String getImagen() {
-		return imagen;
-	}
-
-	/**
-	 * @param imagen the imagen to set
-	 */
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
-
-	/**
 	 * @return the descripcion
 	 */
 	public String getDescripcion() {
@@ -128,31 +90,17 @@ public class Parque implements Serializable {
 	}
 
 	/**
-	 * @return the compania
+	 * @return the parque
 	 */
-	public Compania getCompania() {
-		return compania;
+	public Parque getParque() {
+		return parque;
 	}
 
 	/**
-	 * @param compania the compania to set
+	 * @param parque the parque to set
 	 */
-	public void setCompania(Compania compania) {
-		this.compania = compania;
-	}
-
-	/**
-	 * @return the localidad
-	 */
-	public Localidad getLocalidad() {
-		return localidad;
-	}
-
-	/**
-	 * @param localidad the localidad to set
-	 */
-	public void setLocalidad(Localidad localidad) {
-		this.localidad = localidad;
+	public void setParque(Parque parque) {
+		this.parque = parque;
 	}
 
 	/**
@@ -197,8 +145,6 @@ public class Parque implements Serializable {
 		this.fechaUltimaModificacion = fechaUltimaModificacion;
 	}
 
-	
-	
 	/**
 	 * @return the listFoto
 	 */
@@ -213,10 +159,8 @@ public class Parque implements Serializable {
 		this.listFoto = listFoto;
 	}
 
-	public Parque() {
+	public Atraccion() {
 		super();
 	}
-	
-	
-	
+
 }

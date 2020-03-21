@@ -8,4 +8,6 @@ import com.alvaro.parquesAcuaticos.bean.Provincia;
 public interface ProvinciaDAO {
 
 	public List<Provincia> getProvinciasPorPais(Pais pais);
+	
+	public Provincia getProvinciaByID(Provincia provincia);
 	}

@@ -7,7 +7,7 @@
 
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.custom.i18n.resources" value="global" />
-	
+
 
 	<package name="basicstruts2" extends="struts-default">
 		<action name="index">
@@ -66,20 +66,22 @@
 				<param name="actionName">verDatosUsuario</param>
 			</result>
 			<result name="input">/pages/usuario/usuarioRegistro.jsp</result>
-			
+
 		</action>
-		
+
 		<!-- End Usuario -->
-		
+
 		<!-- Localidad -->
-		<action name="irLocalidadAniadir" class="com.alvaro.parquesAcuaticos.action.localidad.LocalidadIrAniadirAction" method="execute">
+		<action name="irLocalidadAniadir"
+			class="com.alvaro.parquesAcuaticos.action.localidad.LocalidadIrAniadirAction"
+			method="execute">
 			<result name="SUCCESS">/pages/localidad/localidadAniadir.jsp</result>
 			<result name="NO_LOGEADO" type="redirectAction">
 				<param name="actionName">irUsuarioLogin</param>
 			</result>
 		</action>
-		
-		
+
+
 		<action name="localidadAniadir"
 			class="com.alvaro.parquesAcuaticos.action.localidad.LocalidadAniadirAction"
 			method="execute">
@@ -96,31 +98,162 @@
 				<param name="actionName">irUsuarioLogin</param>
 			</result>
 		</action>
+
+		<action name="getLocalidadesPorProvincia"
+			class="com.alvaro.parquesAcuaticos.action.localidad.LocalidadGeneralAction"
+			method="getLocalidadesPorPais">
+			<result name="SUCCESS">/pages/localidad/localidadListSelect.jsp</result>
+		</action>
 		<!-- End Localidad -->
-		
+
 		<!-- Provincias -->
-		<action name="getProvinciasPais" class="com.alvaro.parquesAcuaticos.action.provincia.ProvinciaGeneralAction" method="getProvinciaPorPais">
+		<action name="getProvinciasPais"
+			class="com.alvaro.parquesAcuaticos.action.provincia.ProvinciaGeneralAction"
+			method="getProvinciaPorPais">
 			<result name="SUCCESS">/pages/provincia/provinciaListSelect.jsp</result>
 		</action>
-		<!-- End Provincia -->
 		
-		<!--  Compania -->
-		<action name="irCompania" class="com.alvaro.parquesAcuaticos.action.compania.irCompaniaAction" method="execute">
+		<action name="verProvincia"
+			class="com.alvaro.parquesAcuaticos.action.provincia.VerProvinciaAction"
+			method="verProvincia">
+			<result name="SUCCESS">/pages/provincia/provincia.jsp</result>
+		</action>
+		<!-- End Provincia -->
+
+		<!-- Compania -->
+		<action name="irCompania"
+			class="com.alvaro.parquesAcuaticos.action.compania.irCompaniaAction"
+			method="execute">
 			<result name="SUCCESS">/pages/compania/companiaDatos.jsp</result>
 			<result name="NO_LOGEADO" type="redirectAction">
 				<param name="actionName">irUsuarioLogin</param>
 			</result>
 		</action>
+
+		<action name="verCompanias"
+			class="com.alvaro.parquesAcuaticos.action.compania.VerCompanias"
+			method="verTodas">
+			<result name="SUCCESS">/pages/compania/todas.jsp</result>
+		</action>
+
+		<action name="verCompania"
+			class="com.alvaro.parquesAcuaticos.action.compania.VerCompanias"
+			method="verCompania">
+			<result name="SUCCESS">/pages/compania/una.jsp</result>
+		</action>
+
+		<action name="guardarCompania"
+			class="com.alvaro.parquesAcuaticos.action.compania.CompaniaGuardarAction"
+			method="execute">
+			<result name="SUCCESS">/pages/compania/companiaDatos.jsp
+			</result>
+			<result name="NO_LOGEADO" type="redirectAction">
+				<param name="actionName">irUsuarioLogin</param>
+			</result>
+		</action>
+
+		<!-- End Compania -->
+
+		<!-- Parque -->
+		<action name="irParqueAdministrador"
+			class="com.alvaro.parquesAcuaticos.action.parque.ParqueAdminAction"
+			method="ir">
+			<result name="SUCCESS">/pages/parque/parqueAdmin.jsp</result>
+			<result name="NO_LOGEADO" type="redirectAction">
+				<param name="actionName">irUsuarioLogin</param>
+			</result>
+		</action>
+
+		<action name="guardarParque"
+			class="com.alvaro.parquesAcuaticos.action.parque.ParqueAdminAction"
+			method="guardar">
+			<result name="SUCCESS" type="redirectAction">
+				<param name="actionName">irParqueAdministrador</param>
+				<param name="parque.idParque">${parque.idParque}</param>
+				<param name="operationStatus">${operationStatus}</param>
+			</result>
+			<result name="NO_LOGEADO" type="redirectAction">
+				<param name="actionName">irUsuarioLogin</param>
+			</result>
+			<result name="input" type="redirectAction">
+				<param name="actionName">irParqueAdministrador</param>
+				<param name="parque.idParque">${parque.idParque}</param>
+				<param name="operationStatus">${operationStatus}</param>
+			</result>
+		</action>
+
+		<action name="irParqueAdministradorFotos"
+			class="com.alvaro.parquesAcuaticos.action.parque.ParqueAdminAction"
+			method="irParqueFotos">
+			<result name="SUCCESS">/pages/parque/parqueAdminFotos.jsp</result>
+			<result name="NO_LOGEADO" type="redirectAction">
+				<param name="actionName">irUsuarioLogin</param>
+			</result>
+		</action>
+
+		<action name="guardarParqueAdministradorFotos"
+			class="com.alvaro.parquesAcuaticos.action.parque.ParqueAdminAction"
+			method="guardarParqueFotos">
+			<result name="SUCCESS" type="redirectAction">
+				<param name="actionName">irParqueAdministradorFotos</param>
+				<param name="parque.idParque">${parque.idParque}</param>
+				<param name="operationStatus">${operationStatus}</param>
+			</result>
+			<result name="NO_LOGEADO" type="redirectAction">
+				<param name="actionName">irUsuarioLogin</param>
+			</result>
+		</action>
+
+
+		<!-- End Parque -->
+
+		<!-- Pais -->
+
+		<action name="verPais"
+			class="com.alvaro.parquesAcuaticos.action.pais.VerPaisAction"
+			method="verPais">
+			<result name="SUCCESS">/pages/pais/pais.jsp</result>
+		</action>
 		
-		<action name="guardarCompania" class="com.alvaro.parquesAcuaticos.action.compania.CompaniaGuardarAction" method="execute">
-			<result name="SUCCESS" >/pages/compania/companiaDatos.jsp</result>
+		<action name="verPaises"
+			class="com.alvaro.parquesAcuaticos.action.pais.VerPaisAction"
+			method="verPaises">
+			<result name="SUCCESS">/pages/pais/paisesTodos.jsp</result>
+		</action>
+
+		<!-- End Pais -->
+		
+		<!-- Etiqueta -->
+		<action name="verEtiquetaAdministrador"
+			class="com.alvaro.parquesAcuaticos.action.etiqueta.EtiquetaAdministradorAction"
+			method="irEtiqueta">
+			<result name="SUCCESS">/pages/etiqueta/etiquetaAdministrador.jsp</result>
+		</action>
+		
+		<action name="guardarEtiquetaAdministrador"
+			class="com.alvaro.parquesAcuaticos.action.etiqueta.EtiquetaAdministradorAction"
+			method="guardarEtiqueta">
+			<result name="SUCCESS" type="redirectAction">
+				<param name="actionName">verEtiquetaAdministrador</param>
+				<param name="etiqueta.idEtiqueta">${etiqueta.idEtiqueta}</param>
+				<param name="operationStatus">${operationStatus}</param>
+			</result>
+			<result name="input">
+				/pages/etiqueta/etiquetaAdministrador.jsp
+			</result>
 			<result name="NO_LOGEADO" type="redirectAction">
 				<param name="actionName">irUsuarioLogin</param>
 			</result>
 		</action>
 		
-		<!--	End Compania  -->
+		<action name="verEtiquetasAdministrador"
+			class="com.alvaro.parquesAcuaticos.action.etiqueta.EtiquetaAdministradorAction"
+			method="verTodas">
+			<result name="SUCCESS">/pages/etiqueta/verEtiquetasAdministrador.jsp</result>
+		</action>
 		
+		<!-- End Etiqueta -->
+
 
 	</package>
 

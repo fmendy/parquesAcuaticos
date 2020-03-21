@@ -1,5 +1,6 @@
 package com.alvaro.parquesAcuaticos.bean;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +18,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Localidad")
-public class Localidad {
+public class Localidad implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IDLocalidad", nullable = false, unique = true, updatable = false)
-	private int idProvincia;
+	private int idLocalidad;
 	
 	@Column(name = "Nombre", nullable = false, unique = true, length = 80)
 	private String nombre;
@@ -45,6 +46,20 @@ public class Localidad {
 	
 
 	/**
+	 * @return the idLocalidad
+	 */
+	public int getIdLocalidad() {
+		return idLocalidad;
+	}
+
+	/**
+	 * @param idLocalidad the idLocalidad to set
+	 */
+	public void setIdLocalidad(int idLocalidad) {
+		this.idLocalidad = idLocalidad;
+	}
+
+	/**
 	 * @return the listParque
 	 */
 	public List<Parque> getListParque() {
@@ -58,19 +73,6 @@ public class Localidad {
 		this.listParque = listParque;
 	}
 
-	/**
-	 * @return the idProvincia
-	 */
-	public int getIdProvincia() {
-		return idProvincia;
-	}
-
-	/**
-	 * @param idProvincia the idProvincia to set
-	 */
-	public void setIdProvincia(int idProvincia) {
-		this.idProvincia = idProvincia;
-	}
 
 	/**
 	 * @return the nombre

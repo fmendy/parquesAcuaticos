@@ -1,6 +1,7 @@
 package com.alvaro.parquesAcuaticos.bean;
 
 import java.io.File;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Compania")
-public class Compania {
+public class Compania implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +47,7 @@ public class Compania {
 	
 	@OneToMany(mappedBy="compania", fetch = FetchType.EAGER)
 	private List<Parque> listParque = new ArrayList<Parque>();
+	
 	
 	
 
@@ -170,6 +172,7 @@ public class Compania {
 
 		return this.idCompania == ((Compania) obj).idCompania;
 	}
+
 	
 	
 	
